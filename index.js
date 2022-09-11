@@ -25,15 +25,19 @@ What's Your Name ?  :`,(userInput)=>{
   }
 )
 
-let hightScore=3;
+let hightScore=10;
 let highestScoreAcheivers=[
   {
     name:'sangeetha',
-    score:3
+    score:10
+  },
+  {
+    name:'harry',
+    score:6
   },
   {
     name:'lilly',
-    score:3
+    score:5
   },
   {
     name:'sandeep',
@@ -57,7 +61,28 @@ let trickyQuizz=[
   {
     question:"some months have 31 days ,others have 30 days,but how many have 28 days? ",
     answer:'12'
-  }
+  },
+  {question:"What has a head, a tail, but does not have a body? ",
+    answer:'coin'
+  },
+  {question:"What 5-letter word becomes shorter when you add two letters to it?",
+    answer:'short'
+  },
+  {question:"What bird can lift the most weight?",
+    answer:'crane'
+  },
+  {question:"Beth’s mother has three daughters. One is called Lara, the other one is Sara. What is the name of the third daughter?",
+    answer:'beth'
+  },
+  {question:"What word is spelled incorrectly in every single dictionary?",
+    answer:'incorrectly'
+  },
+  {question:"What is it that lives if it is fed, and dies if you give it a drink?",
+    answer:'fire'
+  },
+  {question:"What can one catch that is not thrown?",
+    answer:'cold'
+  },
 ]
 
 let quizQuestionLength=trickyQuizz.length;
@@ -91,13 +116,22 @@ function checkindexExceeded(){
 
 function exitPlay(){
   let Acheivers=[];
+  let rank=[];
+  let currentRank;
   for (let [key,{name,score}] of highestScoreAcheivers.entries()){
         if(currentScore==score)Acheivers.push(name);
+        if(!rank.includes(score)){
+          rank.push(score);
+        }
     }
-    // Acheivers.push(currentUser);
     highestScoreAcheivers.push({name:currentUser,score:currentScore});
+   if(!rank.includes(currentScore)){
+          rank.push(currentScore);
+    }
+    rank.sort(function(a, b){return b - a});
+    currentrank=rank.indexOf(currentScore)+1;
     console.log('');
-    console.log(chalk.cyanBright.bold(`congrats your one of top ${hightScore-currentScore+1} Acheivers mentioned below`))
+    console.log(chalk.cyanBright.bold(`congrats your one among the Acheivers mentioned below your rank is ${currentrank}`));
     console.log('');
           console.log(chalk.whiteBright.bold(...Acheivers,chalk.blue.bgWhite(currentUser)));  
 
